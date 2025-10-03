@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏖️ 宜蘭→台中 2天1夜親子小旅行</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Microsoft JhengHei", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .header h1 {
+        color: #4a5568;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .trip-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .info-card {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #667eea;
+      }
+
+      .info-card h3 {
+        color: #4a5568;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      .day-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .day-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .day-header h2 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+      }
+
+      .day-theme {
+        font-size: 1.1em;
+        opacity: 0.9;
+      }
+
+      .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .schedule-table th {
+        background: #f7fafc;
+        padding: 15px;
+        text-align: left;
+        font-weight: bold;
+        color: #4a5568;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      .schedule-table td {
+        padding: 15px;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+      }
+
+      .schedule-table tr:hover {
+        background: #f7fafc;
+        transition: background 0.3s ease;
+      }
+
+      .time-cell {
+        font-weight: bold;
+        color: #667eea;
+        white-space: nowrap;
+        width: 120px;
+      }
+
+      .location {
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 5px;
+      }
+
+      .address {
+        font-size: 0.9em;
+        color: #718096;
+        margin-bottom: 5px;
+      }
+
+      .description {
+        color: #4a5568;
+      }
+
+      .notes {
+        color: #e53e3e;
+        font-size: 0.9em;
+      }
+
+      .distance-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .distance-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .distance-table th {
+        background: #667eea;
+        color: white;
+        padding: 15px;
+        text-align: left;
+      }
+
+      .distance-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .tips-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .tips-section h2 {
+        color: #4a5568;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .tip-card {
+        background: #f7fafc;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+      }
+
+      .tip-card h3 {
+        color: #2d3748;
+        margin-bottom: 10px;
+      }
+
+      .tip-card ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .tip-card li {
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .tip-card li:before {
+        content: "🔸";
+        position: absolute;
+        left: 0;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 10px;
+        }
+
+        .header h1 {
+          font-size: 1.8em;
+        }
+
+        .schedule-table {
+          font-size: 0.9em;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+          padding: 10px;
+        }
+      }
+
+      .emoji {
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 標題區域 -->
+      <div class="header">
+        <h1>🏖️ 宜蘭 → 台中 2天1夜 親子小旅行</h1>
+      </div>
+
+      <!-- 旅行資訊 -->
+      <div class="trip-info">
+        <div class="info-card">
+          <h3>👨‍👩‍👧‍👧 成員</h3>
+          <p>爸爸、媽媽＋三位女兒<br />（8歲、10歲、14歲）</p>
+        </div>
+        <div class="info-card">
+          <h3>🛏️ 住宿</h3>
+          <p>GOGO HOTEL 逢甲館<br />台中市西屯區至善路188號</p>
+        </div>
+        <div class="info-card">
+          <h3>📅 日期</h3>
+          <p>10月10日（四）～10月11日（五）</p>
+        </div>
+        <div class="info-card">
+          <h3>🚗 交通</h3>
+          <p>自駕</p>
+        </div>
+      </div>
+
+      <!-- Day 1 -->
+      <div class="day-section">
+        <div class="day-header">
+          <h2>🌅 Day 1｜10/10（羅東 → 台中）</h2>
+          <div class="day-theme">主題：🚴‍♀️ 科技體驗 × 夜市樂趣 × 親子放鬆</div>
+        </div>
+
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>時間</th>
+              <th>行程內容</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="time-cell">08:00</td>
+              <td>
+                <div class="location">從羅東出發</div>
+              </td>
+              <td class="notes">建議提早出門，避開連假車潮</td>
+            </tr>
+            <tr>
+              <td class="time-cell">10:00</td>
+              <td>
+                <div class="location">【中途休息】新竹關西服務區</div>
+              </td>
+              <td class="notes">上廁所、伸展、小點心</td>
+            </tr>
+            <tr>
+              <td class="time-cell">11:30～13:30</td>
+              <td>
+                <div class="location">
+                  【自行車文化探索館】（捷安特 Giant Museum）
+                </div>
+                <div class="address">📍 台中市西屯區工業區27路1號</div>
+              </td>
+              <td class="notes">
+                預約導覽、互動體驗、小孩可試騎、館內咖啡廳午餐
+              </td>
+            </tr>
+            <tr>
+              <td class="time-cell">14:00～16:00</td>
+              <td>
+                <div class="location">【台中中央公園】</div>
+              </td>
+              <td class="notes">免費親子景點、大草皮＋特色溜滑梯</td>
+            </tr>
+            <tr>
+              <td class="time-cell">16:30</td>
+              <td>
+                <div class="location">【入住 GOGO HOTEL 逢甲館】</div>
+              </td>
+              <td class="notes">飯店附停車場、可稍作休息</td>
+            </tr>
+            <tr>
+              <td class="time-cell">18:00～21:00</td>
+              <td>
+                <div class="location">【逢甲夜市】</div>
+                <div class="description">
+                  晚餐＋散步：惡魔雞排、文華路地瓜球、紅茶臭豆腐
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="time-cell">21:30</td>
+              <td>
+                <div class="location">回飯店休息</div>
+              </td>
+              <td class="notes">可泡澡、整理行李</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-section">
+        <div class="day-header">
+          <h2>🌤️ Day 2｜10/11（台中 → 白沙屯天后宮 → 羅東）</h2>
+          <div class="day-theme">主題：☕️ 文青早晨 × 文化參拜 × 海線風景</div>
+        </div>
+
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>時間</th>
+              <th>行程內容</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="time-cell">08:00～08:30</td>
+              <td>
+                <div class="location">起床、飯店早餐 or 附近早午餐</div>
+              </td>
+              <td class="notes">推薦「小日子早午餐」、「豆子咖啡」</td>
+            </tr>
+            <tr>
+              <td class="time-cell">09:00～11:00</td>
+              <td>
+                <div class="location">【審計新村＋草悟道】</div>
+                <div class="address">📍 台中市西區民生路368巷</div>
+                <div class="description">
+                  文創小店、冰淇淋、咖啡、街拍<br />可租電動滑板車或步行到綠園道
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="time-cell">11:15～12:15</td>
+              <td>
+                <div class="location">【午餐】</div>
+                <div class="description">
+                  推薦「旅人咖啡」、「光之乳酪」、「肉蛋吐司」
+                </div>
+              </td>
+              <td class="notes">用餐後準備北上</td>
+            </tr>
+            <tr>
+              <td class="time-cell">12:30～14:00</td>
+              <td>
+                <div class="location">【開車前往白沙屯天后宮】</div>
+              </td>
+              <td class="notes">約 1.5 小時車程</td>
+            </tr>
+            <tr>
+              <td class="time-cell">14:00～15:30</td>
+              <td>
+                <div class="location">【白沙屯天后宮參拜】</div>
+                <div class="address">📍 苗栗縣通霄鎮白東里8號</div>
+              </td>
+              <td class="notes">媽祖廟參拜祈福，感受進香文化</td>
+            </tr>
+            <tr>
+              <td class="time-cell">15:30～16:30</td>
+              <td>
+                <div class="location">
+                  【通霄濱海遊憩區 / 精鹽廠鹽來館】（可擇一）
+                </div>
+              </td>
+              <td class="notes">看海、喝咖啡、買鹽冰棒</td>
+            </tr>
+            <tr>
+              <td class="time-cell">16:30～18:30</td>
+              <td>
+                <div class="location">【返程回羅東】</div>
+              </td>
+              <td class="notes">可在清水或蘇澳服務區休息</td>
+            </tr>
+            <tr>
+              <td class="time-cell">18:30</td>
+              <td>
+                <div class="location">抵達羅東，結束快樂旅程 ❤️</div>
+              </td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 距離參考 -->
+      <div class="distance-section">
+        <h2>📍 地點順序與距離參考</h2>
+        <table class="distance-table">
+          <thead>
+            <tr>
+              <th>路線段</th>
+              <th>車程時間</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>羅東 → Giant自行車館</td>
+              <td>約 3 小時</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Giant館 → GOGO HOTEL</td>
+              <td>約 15 分</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>飯店 → 逢甲夜市</td>
+              <td>步行10分鐘</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GOGO HOTEL → 審計新村</td>
+              <td>約 15 分</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>審計新村 → 白沙屯天后宮</td>
+              <td>約 1小時30分</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>白沙屯 → 通霄濱海區</td>
+              <td>約 10 分</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>通霄 → 羅東</td>
+              <td>約 2小時30分</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 小提醒 -->
+      <div class="tips-section">
+        <h2>☀️ 小提醒</h2>
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>🎯 10/10 國慶連假建議行前預約</h3>
+            <ul>
+              <li>🚴 自行車文化探索館導覽時段</li>
+              <li>🏨 GOGO HOTEL 停車位（若非保留）</li>
+            </ul>
+          </div>
+          <div class="tip-card">
+            <h3>🅿️ 停車建議</h3>
+            <ul>
+              <li>
+                審計新村停車建議：草悟道「市民廣場停車場」或「英才路地下停車場」
+              </li>
+            </ul>
+          </div>
+          <div class="tip-card">
+            <h3>📸 拍照時機</h3>
+            <ul>
+              <li>白沙屯天后宮香客多，下午去人潮較少、光線柔和適合拍照</li>
+            </ul>
+          </div>
+          <div class="tip-card">
+            <h3>🌦️ 備案行程</h3>
+            <ul>
+              <li>若天氣炎熱或下雨，可改科博館或宮原眼科替代行程</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
