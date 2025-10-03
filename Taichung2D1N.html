@@ -13,8 +13,8 @@
 
       body {
         font-family: "Microsoft JhengHei", Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
+        line-height: 1.8;
+        color: #1a202c;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
       }
@@ -28,16 +28,17 @@
       .header {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 20px;
-        padding: 30px;
+        padding: 40px 30px;
         margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         text-align: center;
       }
 
       .header h1 {
-        color: #4a5568;
+        color: #2d3748;
         font-size: 2.5em;
         margin-bottom: 20px;
+        font-weight: 700;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       }
 
@@ -50,33 +51,46 @@
 
       .info-card {
         background: rgba(255, 255, 255, 0.9);
-        padding: 20px;
+        padding: 25px;
         border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         border-left: 5px solid #667eea;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
       }
 
       .info-card h3 {
-        color: #4a5568;
+        color: #2d3748;
         margin-bottom: 10px;
         font-size: 1.2em;
+        font-weight: 600;
+      }
+
+      .info-card p {
+        color: #1a202c;
+        font-weight: 500;
       }
 
       .day-section {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 20px;
-        padding: 30px;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 35px;
+        margin-bottom: 35px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
       }
 
       .day-header {
         background: linear-gradient(135deg, #667eea, #764ba2);
         color: white;
-        padding: 20px;
+        padding: 25px 20px;
         border-radius: 15px;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         text-align: center;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
       }
 
       .day-header h2 {
@@ -99,61 +113,98 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
+      .schedule-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -5px;
+        padding: 0 5px;
+      }
+
+      .schedule-wrapper::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .schedule-wrapper::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .schedule-wrapper::-webkit-scrollbar-thumb {
+        background: #667eea;
+        border-radius: 10px;
+      }
+
+      .schedule-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #5a67d8;
+      }
+
       .schedule-table th {
         background: #f7fafc;
-        padding: 15px;
+        padding: 18px 15px;
         text-align: left;
-        font-weight: bold;
-        color: #4a5568;
+        font-weight: 700;
+        color: #2d3748;
         border-bottom: 2px solid #e2e8f0;
       }
 
       .schedule-table td {
-        padding: 15px;
+        padding: 18px 15px;
         border-bottom: 1px solid #e2e8f0;
         vertical-align: top;
+        color: #1a202c;
       }
 
-      .schedule-table tr:hover {
+      .schedule-table tbody tr {
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      .schedule-table tbody tr:hover {
         background: #f7fafc;
-        transition: background 0.3s ease;
+        transform: scale(1.01);
       }
 
       .time-cell {
-        font-weight: bold;
-        color: #667eea;
+        font-weight: 700;
+        color: #5a67d8;
         white-space: nowrap;
         width: 120px;
       }
 
       .location {
-        font-weight: bold;
-        color: #2d3748;
-        margin-bottom: 5px;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 8px;
+        font-size: 1.05em;
+        line-height: 1.6;
       }
 
       .address {
         font-size: 0.9em;
-        color: #718096;
-        margin-bottom: 5px;
+        color: #4a5568;
+        margin-bottom: 8px;
+        line-height: 1.6;
       }
 
       .address a {
         color: #667eea;
         text-decoration: none;
+        transition: color 0.3s ease;
       }
 
       .address a:hover {
+        color: #5a67d8;
         text-decoration: underline;
       }
 
       .description {
-        color: #4a5568;
+        color: #2d3748;
+        line-height: 1.8;
       }
 
       .notes {
         color: #e53e3e;
         font-size: 0.9em;
+        line-height: 1.6;
       }
 
       .distance-section {
@@ -193,9 +244,10 @@
       }
 
       .tips-section h2 {
-        color: #4a5568;
+        color: #2d3748;
         margin-bottom: 20px;
         text-align: center;
+        font-weight: 700;
       }
 
       .tips-grid {
@@ -206,14 +258,25 @@
 
       .tip-card {
         background: #f7fafc;
-        padding: 20px;
-        border-radius: 10px;
+        padding: 25px;
+        border-radius: 12px;
         border-left: 4px solid #667eea;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .tip-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
       }
 
       .tip-card h3 {
-        color: #2d3748;
+        color: #1a202c;
         margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .tip-card li {
+        color: #2d3748;
       }
 
       .tip-card ul {
@@ -222,9 +285,10 @@
       }
 
       .tip-card li {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         padding-left: 20px;
         position: relative;
+        line-height: 1.7;
       }
 
       .tip-card li:before {
@@ -233,27 +297,156 @@
         left: 0;
       }
 
+      /* 平板斷點 */
+      @media (max-width: 1024px) {
+        .container {
+          padding: 15px;
+        }
+
+        .header h1 {
+          font-size: 2.2em;
+        }
+
+        .trip-info {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .tips-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* 手機斷點 */
       @media (max-width: 768px) {
         .container {
-          padding: 10px;
+          padding: 12px;
+        }
+
+        .header {
+          padding: 20px;
         }
 
         .header h1 {
           font-size: 1.8em;
+          margin-bottom: 15px;
         }
 
-        .schedule-table {
-          font-size: 0.9em;
+        .trip-info {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .info-card {
+          padding: 15px;
+        }
+
+        .day-section {
+          padding: 20px 15px;
+        }
+
+        .day-header h2 {
+          font-size: 1.5em;
+        }
+
+        .day-theme {
+          font-size: 1em;
         }
 
         .schedule-table th,
         .schedule-table td {
-          padding: 10px;
+          padding: 12px 8px;
+          font-size: 0.95em;
+        }
+
+        .time-cell {
+          width: 90px;
+          font-size: 0.9em;
+        }
+
+        .distance-section,
+        .tips-section {
+          padding: 20px 15px;
+        }
+
+        .tips-grid {
+          gap: 15px;
+        }
+      }
+
+      /* 小手機斷點 */
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 1.5em;
+        }
+
+        .day-header {
+          padding: 15px;
+        }
+
+        .day-header h2 {
+          font-size: 1.3em;
+        }
+
+        .schedule-table {
+          display: block;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+          font-size: 0.9em;
+          padding: 10px 6px;
+        }
+
+        .distance-table {
+          font-size: 0.9em;
+        }
+
+        .tip-card {
+          padding: 15px;
         }
       }
 
       .emoji {
         font-size: 1.2em;
+      }
+
+      /* 載入動畫 */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header,
+      .info-card,
+      .day-section,
+      .distance-section,
+      .tips-section {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .info-card:nth-child(1) { animation-delay: 0.1s; }
+      .info-card:nth-child(2) { animation-delay: 0.2s; }
+      .info-card:nth-child(3) { animation-delay: 0.3s; }
+      .info-card:nth-child(4) { animation-delay: 0.4s; }
+
+      /* 平滑滾動 */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* 焦點樣式優化 */
+      a:focus,
+      button:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
       }
     </style>
   </head>
@@ -288,20 +481,21 @@
       <div class="day-section">
         <div class="day-header">
           <h2>🌅 Day 1｜10/10（羅東 → 台中）</h2>
-          <div class="day-theme">主題：🚴‍♀️ 科技體驗 × 夜市樂趣 × 親子放鬆</div>
+          <div class="day-theme">主題：🚴‍♀️ 自行車文化 × 📚 漫畫探索 × 🌙 逢甲夜市</div>
         </div>
 
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>時間</th>
-              <th>行程內容</th>
-              <th>備註</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="time-cell">08:00</td>
+        <div class="schedule-wrapper">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>時間</th>
+                <th>行程內容</th>
+                <th>備註</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time-cell">08:00</td>
               <td>
                 <div class="location">從羅東出發</div>
               </td>
@@ -389,28 +583,30 @@
               </td>
               <td class="notes">可泡澡、整理行李</td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Day 2 -->
       <div class="day-section">
         <div class="day-header">
-          <h2>🌤️ Day 2｜10/11（台中 → 白沙屯天后宮 → 羅東）</h2>
-          <div class="day-theme">主題：☕️ 文青早晨 × 文化參拜 × 海線風景</div>
+          <h2>🌤️ Day 2｜10/11（台中 → 白沙屯 → 羅東）</h2>
+          <div class="day-theme">主題：🎨 審計文創 × 🙏 白沙屯媽祖 × 🏠 溫暖返家</div>
         </div>
 
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>時間</th>
-              <th>行程內容</th>
-              <th>備註</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="time-cell">08:00～08:30</td>
+        <div class="schedule-wrapper">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>時間</th>
+                <th>行程內容</th>
+                <th>備註</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time-cell">08:00～08:30</td>
               <td>
                 <div class="location">起床、飯店早餐 or 附近早午餐</div>
               </td>
@@ -512,8 +708,9 @@
               </td>
               <td>—</td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- 距離參考 -->
