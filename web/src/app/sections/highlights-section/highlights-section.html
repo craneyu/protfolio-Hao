@@ -1,0 +1,17 @@
+<section id="highlights" class="mb-18">
+  <app-section-heading [intro]="intro" />
+
+  <div class="grid gap-5 sm:grid-cols-2 mid:grid-cols-3">
+    @for (item of highlights; track item.title) {
+      <article
+        class="rounded-card border border-line bg-surface p-[26px] shadow-card transition-[transform,box-shadow] duration-200 hover:-translate-y-[3px] hover:shadow-card-hover"
+      >
+        <span class="mb-3 block text-[1.8rem]">{{ item.icon }}</span>
+        <h3 class="mb-2 text-[1rem] font-bold text-ink">{{ item.title }}</h3>
+        <p class="text-[0.88rem] leading-[1.65] text-ink-soft">
+          {{ item.desc }}
+        </p>
+      </article>
+    }
+  </div>
+</section>

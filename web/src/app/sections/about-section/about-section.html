@@ -1,0 +1,35 @@
+<section id="about" class="mb-18">
+  <app-section-heading [intro]="intro" />
+
+  <div class="grid gap-6 mid:grid-cols-2">
+    <div class="rounded-card border border-line bg-surface px-[18px] py-[22px] shadow-card sm:p-8">
+      @for (para of paragraphs; track $index) {
+        <p class="mb-3.5 text-[1.08rem] leading-[1.85] text-ink last:mb-0">
+          @for (span of para; track $index) {
+            <span [class.font-bold]="span.strong" [class.text-primary]="span.strong">{{
+              span.text
+            }}</span>
+          }
+        </p>
+      }
+    </div>
+
+    <div class="grid gap-4">
+      @for (prop of valueProps; track prop.title) {
+        <div
+          class="flex items-start gap-3.5 rounded-tile border border-line bg-gradient-to-br from-[#f8faff] to-[#f0fff9] px-5 py-[18px]"
+        >
+          <div class="shrink-0 text-[1.4rem] leading-none mt-0.5">
+            {{ prop.icon }}
+          </div>
+          <div>
+            <strong class="mb-0.5 block text-[0.95rem] font-bold text-ink">
+              {{ prop.title }}
+            </strong>
+            <span class="text-[0.88rem] text-ink-soft">{{ prop.desc }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

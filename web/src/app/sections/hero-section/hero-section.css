@@ -1,0 +1,10 @@
+/* 多段漸層寫成 arbitrary value 會難以閱讀，這裡用元件樣式表保留原始定義 */
+.hero-surface {
+  background: linear-gradient(140deg, #0b1528 0%, #172c60 45%, #0f766e 100%);
+}
+
+.hero-glow {
+  background:
+    radial-gradient(ellipse at 90% 10%, rgb(255 255 255 / 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 90%, rgb(13 148 136 / 0.18) 0%, transparent 40%);
+}
