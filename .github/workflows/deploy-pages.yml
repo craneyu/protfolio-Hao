@@ -24,6 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # @angular/build 要求 node ^22.22.3 || ^24.15.0 || >=26，Node 20 不合格。
+      # 這裡取 22.x 的最新版，與本機開發環境一致。
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
