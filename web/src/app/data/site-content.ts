@@ -70,7 +70,7 @@ export const SITE = {
   email: '930229@gmail.com',
   lineId: 'crane.yu',
   lineUrl: 'https://line.me/ti/p/~crane.yu',
-  copyright: '© 2025 游至皓 Yu Crane · 資深全端工程師 · All rights reserved.',
+  copyright: '© 2026 游至皓 Yu Chih Hao · 資深全端工程師 · All rights reserved.',
 } as const;
 
 export const NAV_LINKS: readonly NavLink[] = [
