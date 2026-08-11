@@ -557,8 +557,9 @@
     section { margin-bottom: 72px; }
 
     p { margin: 0 0 14px; }
-    ul { margin: 0; padding-left: 1.3rem; }
-    li + li { margin-top: 8px; }
+    /* 僅套用於內文條列，避免影響 nav 等自訂清單 */
+    .page ul { margin: 0; padding-left: 1.3rem; }
+    .page li + li { margin-top: 8px; }
 
     /* ── Responsive ── */
     @media (max-width: 960px) {
