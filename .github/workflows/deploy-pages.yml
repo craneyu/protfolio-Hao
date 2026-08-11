@@ -1,8 +1,9 @@
 name: Deploy GitHub Pages
 
-# 站台由兩部分組成，一起發佈到同一個 Pages：
-#   /       → 既有的靜態頁 index.html / Taichung2D1N.html（維持原樣對外可見）
-#   /app/   → web/ 底下的 Angular 版作品集
+# 站台內容：
+#   /                     → web/ 的 Angular 版作品集（建置時預先渲染成靜態 HTML）
+#   /Taichung2D1N.html    → 既有的靜態旅遊頁，原樣保留
+#   /app/                 → 轉址到根目錄（此路徑短暫存在過，留著避免死連結）
 on:
   push:
     branches: [main]
@@ -36,18 +37,44 @@ jobs:
         working-directory: web
         run: npm ci
 
-      # base-href 由 repo 名稱推導，改名 repo 時不必回來改這裡
-      - name: 建置 Angular（部署到 /app/ 子路徑）
+      # base-href 由 repo 名稱推導，改名 repo 時不必回來改這裡。
+      # outputMode: static 會在這一步就把路由預先渲染成完整 HTML，
+      # 所以產出的 index.html 不需要執行 JS 也看得到內容。
+      - name: 建置 Angular（預先渲染）
         working-directory: web
-        run: npm run build -- --base-href "/${{ github.event.repository.name }}/app/"
+        run: npm run build -- --base-href "/${{ github.event.repository.name }}/"
 
       - name: 組合站台目錄
         run: |
           set -euo pipefail
-          mkdir -p _site/app
-          cp index.html Taichung2D1N.html _site/
-          cp -r web/dist/web/browser/. _site/app/
+          mkdir -p _site
+          cp -r web/dist/web/browser/. _site/
+          cp Taichung2D1N.html _site/
           touch _site/.nojekyll
+
+          # /app/ 是先前短暫使用過的網址，留一頁轉址避免死連結
+          mkdir -p _site/app
+          cat > _site/app/index.html <<EOF
+          <!doctype html>
+          <html lang="zh-Hant">
+            <head>
+              <meta charset="utf-8" />
+              <title>已搬遷</title>
+              <link rel="canonical" href="/${{ github.event.repository.name }}/" />
+              <meta http-equiv="refresh" content="0; url=/${{ github.event.repository.name }}/" />
+            </head>
+            <body>
+              <p>此頁已搬到 <a href="/${{ github.event.repository.name }}/">首頁</a>。</p>
+            </body>
+          </html>
+          EOF
+
+          # 預先渲染若失敗會退回空殼，這裡直接擋掉：確認首頁含實際內容
+          if ! grep -q "跨系統整合" _site/index.html; then
+            echo "::error::index.html 未包含預期內容，預先渲染可能失敗"
+            exit 1
+          fi
+
           echo "── _site 內容 ──"
           find _site -type f | sort
 
