@@ -187,7 +187,7 @@ export const SERVICES: readonly IconItem[] = [
   {
     icon: '🔗',
     title: '跨系統整合與 API 串接',
-    desc: '具備第三方 API 串接、Taiwan Pay 金流整合、虛擬帳號查驗與校務流程整合的豐富實戰經驗。',
+    desc: '具備門禁與停車場系統介接、信用卡與 Taiwan Pay 等多元繳費金流整合、虛擬帳號查驗、第三方 API 串接與校務流程整合的豐富實戰經驗。',
   },
   {
     icon: '🛡️',
@@ -202,7 +202,7 @@ export const SERVICES: readonly IconItem[] = [
   {
     icon: '⚙️',
     title: '自動化流程與系統維運',
-    desc: '主導帳號申請自動化、排程備份、報表系統、門禁控制整合，以及 VMware 虛擬化環境的日常維運。',
+    desc: '主導帳號申請自動化、排程備份、報表系統、門禁控制整合，以及虛擬化環境的日常維運。',
   },
 ];
 
@@ -227,7 +227,7 @@ export const TECH_GROUPS: readonly TechGroup[] = [
   {
     label: '資料庫 & 基礎建設',
     tone: 'teal',
-    items: ['SQL Server', 'MySQL', 'Git', 'VMware'],
+    items: ['SQL Server', 'MySQL', 'Git'],
   },
   {
     label: '資安 & 認證',
@@ -254,7 +254,7 @@ export const HIGHLIGHTS: readonly IconItem[] = [
   {
     icon: '💳',
     title: '跨系統整合與金流串接',
-    desc: 'Taiwan Pay、虛擬帳號查驗與校務流程整合，確保交易資料即時性與高安全性。',
+    desc: '門禁與停車場系統介接，信用卡、Taiwan Pay 與虛擬帳號查驗等多元繳費整合，確保交易資料即時性與高安全性。',
   },
   {
     icon: '🛡️',
