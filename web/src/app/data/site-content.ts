@@ -313,6 +313,13 @@ export const PROJECTS: readonly Project[] = [
     link: { label: 'GitHub', href: 'https://github.com/craneyu/CMA_ScoreBoard' },
   },
   {
+    icon: '📝',
+    title: '全國柔術賽事線上報名系統',
+    desc: '報名單位與選手資料管理，依年齡與段位自動分組、分配量級，並檢核各競賽項目的報名資格。',
+    stack: ['Next.js 15', 'TypeScript', 'Prisma', 'Tailwind CSS'],
+    link: { label: 'GitHub', href: 'https://github.com/craneyu/jujistu' },
+  },
+  {
     icon: '🔑',
     title: '單一登入入口網',
     desc: 'FIDO2 無密碼登入、OTP 密碼重設與密碼期效控管，並整合各應用系統的角色權限。',
@@ -329,12 +336,6 @@ export const PROJECTS: readonly Project[] = [
     title: '採購招標管理平台',
     desc: '從請購、廠商與招標方式管理，到標案與契約驗收的全流程，並提供進度儀表板。',
     stack: ['Angular', '.NET Core', 'SQL Server'],
-  },
-  {
-    icon: '🌏',
-    title: '境外招生報名系統',
-    desc: '線上報名、資格審查與自動化通知信，並將寄送作業獨立為專責服務以確保送達。',
-    stack: ['Angular', '.NET Core 8'],
   },
 ];
 
