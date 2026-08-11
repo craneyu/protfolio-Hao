@@ -28,6 +28,15 @@ export interface Stat {
   readonly label: string;
 }
 
+export interface Project {
+  readonly icon: string;
+  readonly title: string;
+  readonly desc: string;
+  readonly stack: readonly string[];
+  /** 僅公開的專案才附連結 */
+  readonly link?: { readonly label: string; readonly href: string };
+}
+
 export interface IconItem {
   readonly icon: string;
   readonly title: string;
@@ -275,6 +284,57 @@ export const HIGHLIGHTS: readonly IconItem[] = [
     icon: '🗄️',
     title: '資料庫設計與維運',
     desc: '精通 SQL Server / MySQL 正規化設計、效能調校、自動化備份排程與異地備援（DR）。',
+  },
+];
+
+/* ── Selected work ─────────────────────────────────────────── */
+
+export const PROJECTS_INTRO: SectionIntro = {
+  eyebrow: 'Selected Work',
+  title: '代表專案',
+  lead: '從賽事即時系統到機構核心平台，橫跨前後端、資安與流程整合',
+};
+
+// 僅描述系統類型與技術，不揭露服務機構、建物名稱或內部網址。
+// link 只給已公開的儲存庫。
+export const PROJECTS: readonly Project[] = [
+  {
+    icon: '🥋',
+    title: '柔術競賽即時計分平台',
+    desc: '三大競技項目的即時計分、賽程控制與觀眾即時顯示，支援多場地同時進行。',
+    stack: ['Angular 20', 'Node.js 22', 'MongoDB', 'Docker'],
+    link: { label: 'GitHub', href: 'https://github.com/craneyu/YILan-JJGAME' },
+  },
+  {
+    icon: '🏆',
+    title: '國術武術競賽計分系統',
+    desc: '多場地、多裁判即時評分，由賽序裁判控制出場流程，並以 Socket.IO 即時廣播賽況。',
+    stack: ['Angular', 'Socket.IO', 'TypeScript'],
+    link: { label: 'GitHub', href: 'https://github.com/craneyu/CMA_ScoreBoard' },
+  },
+  {
+    icon: '🔑',
+    title: '單一登入入口網',
+    desc: 'FIDO2 無密碼登入、OTP 密碼重設與密碼期效控管，並整合各應用系統的角色權限。',
+    stack: ['Angular', '.NET Core', 'FIDO2'],
+  },
+  {
+    icon: '🅿️',
+    title: '停車承租管理系統',
+    desc: '以 Angular 與 .NET Core 10 重新打造，涵蓋承租申請、簡訊群發與通知佇列。',
+    stack: ['Angular', '.NET Core 10', 'SQL Server'],
+  },
+  {
+    icon: '📑',
+    title: '採購招標管理平台',
+    desc: '從請購、廠商與招標方式管理，到標案與契約驗收的全流程，並提供進度儀表板。',
+    stack: ['Angular', '.NET Core', 'SQL Server'],
+  },
+  {
+    icon: '🌏',
+    title: '境外招生報名系統',
+    desc: '線上報名、資格審查與自動化通知信，並將寄送作業獨立為專責服務以確保送達。',
+    stack: ['Angular', '.NET Core 8'],
   },
 ];
 
