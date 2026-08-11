@@ -1,0 +1,66 @@
+name: Deploy GitHub Pages
+
+# 站台由兩部分組成，一起發佈到同一個 Pages：
+#   /       → 既有的靜態頁 index.html / Taichung2D1N.html（維持原樣對外可見）
+#   /app/   → web/ 底下的 Angular 版作品集
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 允許正在進行的部署跑完，避免中途取消留下半套站台
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # @angular/build 要求 node ^22.22.3 || ^24.15.0 || >=26，Node 20 不合格。
+      # 這裡取 22.x 的最新版，與本機開發環境一致。
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: 安裝相依套件
+        working-directory: web
+        run: npm ci
+
+      # base-href 由 repo 名稱推導，改名 repo 時不必回來改這裡
+      - name: 建置 Angular（部署到 /app/ 子路徑）
+        working-directory: web
+        run: npm run build -- --base-href "/${{ github.event.repository.name }}/app/"
+
+      - name: 組合站台目錄
+        run: |
+          set -euo pipefail
+          mkdir -p _site/app
+          cp index.html Taichung2D1N.html _site/
+          cp -r web/dist/web/browser/. _site/app/
+          touch _site/.nojekyll
+          echo "── _site 內容 ──"
+          find _site -type f | sort
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
