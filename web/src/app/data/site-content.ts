@@ -217,12 +217,12 @@ export const TECH_GROUPS: readonly TechGroup[] = [
   {
     label: '前端',
     tone: 'blue',
-    items: ['Angular', 'Angular 21', 'AG Grid', 'Tailwind CSS'],
+    items: ['Angular', 'Vue', 'AG Grid', 'Tailwind CSS'],
   },
   {
     label: '後端 & API',
     tone: 'blue',
-    items: ['.NET Core', 'C#', 'Web API', 'EF Core', 'PHP'],
+    items: ['.NET Core', 'C#', 'Web API', 'EF Core', 'Node.js', 'PHP'],
   },
   {
     label: '資料庫 & 基礎建設',
