@@ -1,0 +1,74 @@
+<section
+  id="home"
+  class="hero-surface relative mt-6 mb-9 overflow-hidden rounded-card px-6 py-9 text-white shadow-hero sm:mt-10 sm:px-9 sm:pt-12 sm:pb-11 mid:px-14 mid:pt-18 mid:pb-16"
+>
+  <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+  <div class="relative z-[1] grid items-center gap-10 mid:grid-cols-[1fr_auto]">
+    <div>
+      <div
+        class="mb-[18px] inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.12em] text-white/55 uppercase"
+      >
+        <span class="inline-block h-0.5 w-6 rounded-sm bg-gold"></span>
+        {{ hero.eyebrow }}
+      </div>
+
+      <h1
+        class="mb-3 text-[clamp(2.2rem,4.5vw,3.6rem)] leading-[1.15] font-extrabold tracking-[0.02em]"
+      >
+        {{ hero.headline }}<br /><em class="text-[#93c5fd] not-italic">{{
+          hero.headlineEmphasis
+        }}</em>
+      </h1>
+
+      <p class="mb-7 max-w-[600px] text-[clamp(1rem,2vw,1.2rem)] text-white/82">
+        {{ hero.tagline }}
+      </p>
+
+      <div class="mb-9 flex flex-wrap gap-3">
+        @for (action of hero.actions; track action.href) {
+          <a
+            class="btn"
+            [class.btn-primary]="!action.external"
+            [class.btn-outline]="action.external"
+            [href]="action.href"
+            [attr.target]="action.external ? '_blank' : null"
+            [attr.rel]="action.external ? 'noopener' : null"
+          >
+            {{ action.label }}
+          </a>
+        }
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 sm:gap-2">
+        @for (badge of hero.badges; track badge) {
+          <span
+            class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-2.5 py-[5px] text-[0.78rem] text-white/90 backdrop-blur-[8px] sm:px-3 sm:py-1.5 sm:text-[0.82rem]"
+          >
+            {{ badge }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <div
+      class="grid shrink-0 grid-cols-2 gap-3.5 sm:grid-cols-[repeat(4,auto)] mid:grid-cols-[repeat(2,auto)]"
+    >
+      @for (stat of hero.stats; track stat.label) {
+        <div
+          class="min-w-[120px] rounded-tile border border-white/18 bg-white/10 px-[22px] py-5 text-center backdrop-blur-[10px]"
+        >
+          <!-- 數字與後綴各自包一層 span：元素之間只留純空白節點（Angular 會移除），
+               避免像 {{ value }} 後面直接接 @if 那樣把空白併進文字節點而變成「20 +」 -->
+          <span class="block text-[2rem] leading-none font-extrabold text-white">
+            <span>{{ stat.value }}</span>
+            <span class="text-[1.2rem]">{{ stat.suffix }}</span>
+          </span>
+          <span class="mt-1 block text-[0.78rem] text-white/65">
+            {{ stat.label }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

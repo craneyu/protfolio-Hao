@@ -1,0 +1,18 @@
+<section id="tech" class="mb-18">
+  <app-section-heading [intro]="intro" />
+
+  <div class="rounded-card border border-line bg-surface p-9 shadow-card">
+    @for (group of groups; track group.label) {
+      <div class="mb-6 last:mb-0">
+        <div class="mb-2.5 text-[0.8rem] font-bold tracking-[0.1em] text-muted uppercase">
+          {{ group.label }}
+        </div>
+        <div class="flex flex-wrap gap-2">
+          @for (item of group.items; track item) {
+            <span [class]="tagClass(group.tone)">{{ item }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

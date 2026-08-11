@@ -1,0 +1,23 @@
+<section id="services" class="mb-18">
+  <app-section-heading [intro]="intro" />
+
+  <div class="grid gap-5 sm:grid-cols-2 mid:grid-cols-3">
+    @for (service of services; track service.title) {
+      <article
+        class="relative overflow-hidden rounded-card border border-line bg-surface px-6 py-7 shadow-card transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card-hover"
+      >
+        <span
+          class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-accent"
+          aria-hidden="true"
+        ></span>
+        <span class="mb-3.5 block text-[2rem]">{{ service.icon }}</span>
+        <h3 class="mb-2.5 text-[1.08rem] font-bold text-ink">
+          {{ service.title }}
+        </h3>
+        <p class="text-[0.9rem] leading-[1.7] text-ink-soft">
+          {{ service.desc }}
+        </p>
+      </article>
+    }
+  </div>
+</section>

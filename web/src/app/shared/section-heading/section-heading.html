@@ -1,0 +1,16 @@
+<div class="mb-10 text-center">
+  <div
+    class="mb-2.5 inline-block text-[0.78rem] font-bold tracking-[0.14em] text-primary uppercase"
+  >
+    {{ intro().eyebrow }}
+  </div>
+  <h2 class="mb-3 text-[clamp(1.6rem,3vw,2.1rem)] font-extrabold text-ink">
+    {{ intro().title }}
+  </h2>
+  <div class="mx-auto mt-3 h-1 w-11 rounded bg-gradient-to-r from-primary to-accent"></div>
+  @if (intro().lead) {
+    <p class="mx-auto my-0 max-w-[560px] text-[1.02rem] text-ink-soft">
+      {{ intro().lead }}
+    </p>
+  }
+</div>

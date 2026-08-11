@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+/* ──────────────────────────────────────────────────────────────
+   Design tokens — 對應原始靜態頁的 :root 變數，透過 Tailwind v4
+   @theme 曝露成 utility（bg-primary / rounded-card / shadow-hero …）
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: 'Segoe UI', 'Noto Sans TC', 'PingFang TC', sans-serif;
+
+  --color-bg: #f0f4f9;
+  --color-surface: #ffffff;
+  --color-ink: #1a2332;
+  --color-ink-soft: #4b5675;
+  --color-muted: #8492a6;
+  --color-primary: #1741c6;
+  --color-primary-hover: #1233a8;
+  --color-primary-soft: #e0e9ff;
+  --color-accent: #0d9488;
+  --color-accent-soft: #ccfbf1;
+  --color-accent-ink: #0d7a70;
+  --color-gold: #f59e0b;
+  --color-gold-soft: #fef3c7;
+  --color-gold-ink: #92400e;
+  --color-line: #e2e8f0;
+
+  /* 版心寬度：max-w-page */
+  --container-page: 1160px;
+
+  /* 原始頁使用 960px 作為中斷點，Tailwind 預設沒有 → 提供 mid: variant。
+     必須用 rem（60rem = 960px）：Tailwind 依數值排序斷點，混用 px 會讓
+     這個斷點排到 sm: 之前，導致 sm: 規則反而覆蓋掉 mid:。 */
+  --breakpoint-mid: 60rem;
+
+  --radius-card: 24px;
+  --radius-tile: 16px;
+  --radius-chip: 10px;
+
+  --shadow-card: 0 2px 8px rgb(15 23 42 / 0.06);
+  --shadow-card-hover: 0 8px 24px rgb(15 23 42 / 0.09);
+  --shadow-hero: 0 20px 50px rgb(15 23 42 / 0.12);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-ink);
+    background-color: var(--color-bg);
+    background-image:
+      radial-gradient(ellipse at 80% 0%, rgb(23 65 198 / 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 0% 100%, rgb(13 148 136 / 0.05) 0%, transparent 45%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* 按鈕：hero 與 CTA 共用兩種樣式 */
+  /* 注意：這裡不要加 border-none。border-none 會把 --tw-border-style 設成 none，
+     連帶讓後面 .btn-outline 的 border-[1.5px] 失效（Tailwind preflight 本來就
+     已把 border-width 歸零，不加也不會有邊框）。 */
+  .btn {
+    @apply inline-flex cursor-pointer items-center gap-2 rounded-full
+      px-[26px] py-[13px] text-[0.95rem] font-bold no-underline
+      transition-[transform,box-shadow,background] duration-200;
+  }
+  .btn-primary {
+    @apply bg-white text-primary shadow-[0_4px_18px_rgb(0_0_0/0.18)];
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5 shadow-[0_8px_28px_rgb(0_0_0/0.22)];
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-white/35 bg-white/12 text-white backdrop-blur-[6px];
+  }
+  .btn-outline:hover {
+    @apply -translate-y-0.5 bg-white/20;
+  }
+
+  /* 技術棧標籤的三種色調 */
+  .tag {
+    @apply inline-block rounded-full px-3.5 py-[7px] text-[0.88rem] font-semibold;
+  }
+  .tag-blue {
+    @apply bg-primary-soft text-primary;
+  }
+  .tag-teal {
+    @apply bg-accent-soft text-accent-ink;
+  }
+  .tag-gold {
+    @apply bg-gold-soft text-gold-ink;
+  }
+}

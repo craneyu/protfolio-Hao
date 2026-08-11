@@ -1,0 +1,60 @@
+<nav class="sticky top-0 z-[100] border-b border-line bg-white/82 backdrop-blur-[14px]">
+  <div class="mx-auto flex h-16 max-w-page items-center justify-between gap-4 px-6">
+    <div class="text-[1rem] font-bold tracking-[0.03em] whitespace-nowrap text-primary">
+      {{ site.brand }}
+    </div>
+
+    <!-- 桌機版選單 -->
+    <ul class="hidden items-center gap-6 sm:flex">
+      @for (link of links; track link.href) {
+        <li>
+          <a
+            [href]="link.href"
+            class="text-[0.9rem] font-medium whitespace-nowrap text-ink-soft transition-colors duration-200 hover:text-primary"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- 手機版漢堡按鈕（data-open 驅動三條線變成 ✕） -->
+    <button
+      type="button"
+      class="group flex h-9 w-9 shrink-0 cursor-pointer flex-col justify-center gap-[5px] rounded-lg border-none bg-transparent px-[5px] py-1 sm:hidden"
+      [attr.data-open]="menuOpen() ? '' : null"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? '關閉選單' : '開啟選單'"
+      aria-controls="mobile-menu"
+      (click)="toggleMenu()"
+    >
+      <span
+        class="block h-0.5 rounded-sm bg-ink transition-transform duration-200 group-data-open:translate-y-[7px] group-data-open:rotate-45"
+      ></span>
+      <span
+        class="block h-0.5 rounded-sm bg-ink transition-opacity duration-200 group-data-open:opacity-0"
+      ></span>
+      <span
+        class="block h-0.5 rounded-sm bg-ink transition-transform duration-200 group-data-open:-translate-y-[7px] group-data-open:-rotate-45"
+      ></span>
+    </button>
+  </div>
+
+  <!-- 手機版展開選單 -->
+  @if (menuOpen()) {
+    <div
+      id="mobile-menu"
+      class="flex flex-col border-t border-line bg-white/97 pt-2 pb-3 sm:hidden"
+    >
+      @for (link of links; track link.href) {
+        <a
+          [href]="link.href"
+          class="block px-6 py-2.5 text-[0.95rem] font-medium text-ink hover:text-primary"
+          (click)="closeMenu()"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </div>
+  }
+</nav>

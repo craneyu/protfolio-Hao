@@ -1,0 +1,44 @@
+<section id="contact" class="mb-18">
+  <div
+    class="cta-surface relative overflow-hidden rounded-card px-6 py-10 text-center text-white shadow-hero sm:px-12 sm:py-15"
+  >
+    <div class="cta-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+    <div class="relative z-[1]">
+      <h2 class="mb-3 text-[clamp(1.6rem,3vw,2.2rem)] font-extrabold">
+        {{ contact.title }}
+      </h2>
+      <p class="mx-auto mb-8 max-w-[520px] text-[1.05rem] text-white/80">
+        {{ contact.desc }}
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3.5">
+        @for (action of contact.actions; track action.href) {
+          <a
+            class="btn"
+            [class.btn-primary]="!action.external"
+            [class.btn-outline]="action.external"
+            [href]="action.href"
+            [attr.target]="action.external ? '_blank' : null"
+            [attr.rel]="action.external ? 'noopener' : null"
+          >
+            {{ action.label }}
+          </a>
+        }
+      </div>
+
+      <div class="mt-7 flex flex-wrap justify-center gap-5">
+        @for (item of contact.info; track item.value) {
+          <div class="flex items-center gap-2 text-[0.9rem] text-white/70">
+            @if (item.emphasize) {
+              <span>{{ item.label ? item.icon + ' ' + item.label : item.icon }}</span>
+              <strong class="font-bold text-white">{{ item.value }}</strong>
+            } @else {
+              <span>{{ item.icon + ' ' + item.value }}</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

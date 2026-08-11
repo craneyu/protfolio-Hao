@@ -1,0 +1,29 @@
+<section id="process" class="mb-18">
+  <app-section-heading [intro]="intro" />
+
+  <div class="rounded-card border border-line bg-surface px-10 py-11 shadow-card">
+    <div class="relative grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-0">
+      <!-- 步驟之間的連接線（手機版隱藏） -->
+      <span
+        class="absolute top-9 right-[calc(12.5%+18px)] left-[calc(12.5%+18px)] z-0 hidden h-0.5 bg-gradient-to-r from-primary-soft to-accent-soft sm:block"
+        aria-hidden="true"
+      ></span>
+
+      @for (step of steps; track step.step) {
+        <div class="relative z-[1] flex flex-col items-center px-3 text-center">
+          <div
+            class="mb-3.5 flex h-13 w-13 shrink-0 items-center justify-center rounded-full bg-linear-135 from-primary to-accent text-[1.1rem] font-extrabold text-white shadow-[0_4px_14px_rgb(23_65_198/0.25)]"
+          >
+            {{ step.step }}
+          </div>
+          <h3 class="mb-1.5 text-[0.95rem] font-bold text-ink">
+            {{ step.title }}
+          </h3>
+          <p class="text-[0.83rem] leading-[1.6] text-ink-soft">
+            {{ step.desc }}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
