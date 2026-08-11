@@ -1,960 +1,1200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>游至皓 Yu Crane｜資深全端工程師 × AI 賦能開發</title>
-  <meta name="description" content="20 年學術機構資訊系統開發經驗，ISO 27001 主導稽核員，Gemini / Claude 協作開發，提供穩定、精準、準時交付的專業技術支援。">
-  <style>
-    /* ── Design tokens ── */
-    :root {
-      --bg: #f0f4f9;
-      --surface: #ffffff;
-      --text: #1a2332;
-      --text-secondary: #4b5675;
-      --muted: #8492a6;
-      --primary: #1741c6;
-      --primary-hover: #1233a8;
-      --primary-soft: #e0e9ff;
-      --accent: #0d9488;
-      --accent-soft: #ccfbf1;
-      --gold: #f59e0b;
-      --border: #e2e8f0;
-      --radius-lg: 24px;
-      --radius-md: 16px;
-      --radius-sm: 10px;
-      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
-      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.09);
-      --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>游至皓 Yu Chih Hao｜資深全端工程師 × AI 賦能開發</title>
+    <meta
+      name="description"
+      content="20 年學術機構資訊系統開發經驗，ISO 27001 主導稽核員，Gemini / Claude 協作開發，提供穩定、精準、準時交付的專業技術支援。" />
+    <style>
+      /* ── Design tokens ── */
+      :root {
+        --bg: #f0f4f9;
+        --surface: #ffffff;
+        --text: #1a2332;
+        --text-secondary: #4b5675;
+        --muted: #8492a6;
+        --primary: #1741c6;
+        --primary-hover: #1233a8;
+        --primary-soft: #e0e9ff;
+        --accent: #0d9488;
+        --accent-soft: #ccfbf1;
+        --gold: #f59e0b;
+        --border: #e2e8f0;
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --radius-sm: 10px;
+        --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+        --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.09);
+        --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+      }
 
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-      color: var(--text);
-      background: var(--bg);
-      background-image:
-        radial-gradient(ellipse at 80% 0%, rgba(23, 65, 198, 0.07) 0%, transparent 55%),
-        radial-gradient(ellipse at 0% 100%, rgba(13, 148, 136, 0.05) 0%, transparent 45%);
-      background-attachment: fixed;
-    }
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        color: var(--text);
+        background: var(--bg);
+        background-image:
+          radial-gradient(
+            ellipse at 80% 0%,
+            rgba(23, 65, 198, 0.07) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse at 0% 100%,
+            rgba(13, 148, 136, 0.05) 0%,
+            transparent 45%
+          );
+        background-attachment: fixed;
+      }
 
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .nav-brand {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--primary);
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-    }
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--primary); }
+      /* ── Nav ── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .nav-brand {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--primary);
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+      }
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
 
-    /* ── Page wrapper ── */
-    .page { max-width: 1160px; margin: 0 auto; padding: 0 24px 80px; }
+      /* ── Page wrapper ── */
+      .page {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+      }
 
-    /* ── Hero ── */
-    .hero {
-      background: linear-gradient(140deg, #0b1528 0%, #172c60 45%, #0f766e 100%);
-      color: #fff;
-      border-radius: var(--radius-lg);
-      padding: 72px 56px 64px;
-      margin-top: 40px;
-      margin-bottom: 36px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 90% 10%, rgba(255,255,255,0.08) 0%, transparent 40%),
-        radial-gradient(ellipse at 10% 90%, rgba(13, 148, 136, 0.18) 0%, transparent 40%);
-      pointer-events: none;
-    }
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-    }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 18px;
-    }
-    .hero-eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      line-height: 1.15;
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: #93c5fd;
-    }
-    .hero .tagline {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.82);
-      margin: 0 0 28px;
-      max-width: 600px;
-    }
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 36px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 26px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
-      border: none;
-    }
-    .btn-primary {
-      background: #fff;
-      color: var(--primary);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
-    .btn-outline {
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.35);
-      backdrop-filter: blur(6px);
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(8px);
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.9);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-rows: repeat(2, auto);
-      grid-template-columns: repeat(2, auto);
-      gap: 14px;
-      flex-shrink: 0;
-    }
-    .stat-card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: var(--radius-md);
-      padding: 20px 22px;
-      text-align: center;
-      min-width: 120px;
-    }
-    .stat-card .num {
-      display: block;
-      font-size: 2rem;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-    }
-    .stat-card .label {
-      display: block;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.65);
-      margin-top: 4px;
-    }
+      /* ── Hero ── */
+      .hero {
+        background: linear-gradient(
+          140deg,
+          #0b1528 0%,
+          #172c60 45%,
+          #0f766e 100%
+        );
+        color: #fff;
+        border-radius: var(--radius-lg);
+        padding: 72px 56px 64px;
+        margin-top: 40px;
+        margin-bottom: 36px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 90% 10%,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            ellipse at 10% 90%,
+            rgba(13, 148, 136, 0.18) 0%,
+            transparent 40%
+          );
+        pointer-events: none;
+      }
+      .hero-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: center;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 18px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: var(--gold);
+        border-radius: 2px;
+      }
+      .hero h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        line-height: 1.15;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: #93c5fd;
+      }
+      .hero .tagline {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: rgba(255, 255, 255, 0.82);
+        margin: 0 0 28px;
+        max-width: 600px;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 26px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.18s,
+          box-shadow 0.18s,
+          background 0.18s;
+        border: none;
+      }
+      .btn-primary {
+        background: #fff;
+        color: var(--primary);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+      }
+      .btn-outline {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(6px);
+      }
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .hero-stats {
+        display: grid;
+        grid-template-rows: repeat(2, auto);
+        grid-template-columns: repeat(2, auto);
+        gap: 14px;
+        flex-shrink: 0;
+      }
+      .stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: var(--radius-md);
+        padding: 20px 22px;
+        text-align: center;
+        min-width: 120px;
+      }
+      .stat-card .num {
+        display: block;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1;
+      }
+      .stat-card .label {
+        display: block;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 4px;
+      }
 
-    /* ── Section headings ── */
-    .section-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .section-eyebrow {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-    .section-header h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.6rem, 3vw, 2.1rem);
-      font-weight: 800;
-      color: var(--text);
-    }
-    .section-header p {
-      margin: 0 auto;
-      max-width: 560px;
-      color: var(--text-secondary);
-      font-size: 1.02rem;
-    }
-    .divider {
-      width: 44px;
-      height: 4px;
-      border-radius: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      margin: 12px auto 0;
-    }
+      /* ── Section headings ── */
+      .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .section-eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      .section-header h2 {
+        margin: 0 0 12px;
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+        font-weight: 800;
+        color: var(--text);
+      }
+      .section-header p {
+        margin: 0 auto;
+        max-width: 560px;
+        color: var(--text-secondary);
+        font-size: 1.02rem;
+      }
+      .divider {
+        width: 44px;
+        height: 4px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        margin: 12px auto 0;
+      }
 
-    /* ── Generic card ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 28px;
-    }
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      margin: 0 0 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .card-title .icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
+      /* ── Generic card ── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 28px;
+      }
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .card-title .icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--primary-soft);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
 
-    /* ── About ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .about-lead {
-      font-size: 1.08rem;
-      color: var(--text);
-      line-height: 1.85;
-    }
-    .about-lead strong { color: var(--primary); }
-    .value-props {
-      display: grid;
-      gap: 16px;
-    }
-    .vp {
-      padding: 18px 20px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, #f8faff, #f0fff9);
-      border: 1px solid var(--border);
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .vp-icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      line-height: 1;
-      margin-top: 2px;
-    }
-    .vp-body strong { display: block; font-size: 0.95rem; color: var(--text); margin-bottom: 2px; }
-    .vp-body span { font-size: 0.88rem; color: var(--text-secondary); }
+      /* ── About ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .about-lead {
+        font-size: 1.08rem;
+        color: var(--text);
+        line-height: 1.85;
+      }
+      .about-lead strong {
+        color: var(--primary);
+      }
+      .value-props {
+        display: grid;
+        gap: 16px;
+      }
+      .vp {
+        padding: 18px 20px;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, #f8faff, #f0fff9);
+        border: 1px solid var(--border);
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .vp-icon {
+        font-size: 1.4rem;
+        flex-shrink: 0;
+        line-height: 1;
+        margin-top: 2px;
+      }
+      .vp-body strong {
+        display: block;
+        font-size: 0.95rem;
+        color: var(--text);
+        margin-bottom: 2px;
+      }
+      .vp-body span {
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+      }
 
-    /* ── Services ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .service-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-    .service-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .service-card p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
+      /* ── Services ── */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .service-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px 24px;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .service-icon {
+        font-size: 2rem;
+        margin-bottom: 14px;
+        display: block;
+      }
+      .service-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .service-card p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
 
-    /* ── Tech stack ── */
-    .tech-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); }
-    .tech-group { margin-bottom: 24px; }
-    .tech-group:last-child { margin-bottom: 0; }
-    .tech-group-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .tag {
-      display: inline-block;
-      padding: 7px 14px;
-      border-radius: 999px;
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-    .tag-blue { background: var(--primary-soft); color: var(--primary); }
-    .tag-teal { background: var(--accent-soft); color: #0d7a70; }
-    .tag-gold { background: #fef3c7; color: #92400e; }
+      /* ── Tech stack ── */
+      .tech-section {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 36px;
+        box-shadow: var(--shadow-sm);
+      }
+      .tech-group {
+        margin-bottom: 24px;
+      }
+      .tech-group:last-child {
+        margin-bottom: 0;
+      }
+      .tech-group-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        display: inline-block;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-size: 0.88rem;
+        font-weight: 600;
+      }
+      .tag-blue {
+        background: var(--primary-soft);
+        color: var(--primary);
+      }
+      .tag-teal {
+        background: var(--accent-soft);
+        color: #0d7a70;
+      }
+      .tag-gold {
+        background: #fef3c7;
+        color: #92400e;
+      }
 
-    /* ── Highlights / Projects ── */
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .highlight-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 26px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .highlight-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .highlight-card .h-icon {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .highlight-card h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .highlight-card p {
-      margin: 0;
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
+      /* ── Highlights / Projects ── */
+      .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .highlight-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 26px;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .highlight-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .highlight-card .h-icon {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .highlight-card h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .highlight-card p {
+        margin: 0;
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+        line-height: 1.65;
+      }
 
-    /* ── Process ── */
-    .process-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
-    }
-    .process-row::after {
-      content: "";
-      position: absolute;
-      top: 36px;
-      left: calc(12.5% + 18px);
-      right: calc(12.5% + 18px);
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary-soft), var(--accent-soft));
-      z-index: 0;
-    }
-    .process-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 12px;
-      position: relative;
-      z-index: 1;
-    }
-    .step-num {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-      flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(23,65,198,0.25);
-    }
-    .process-step h3 {
-      margin: 0 0 6px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .process-step p {
-      margin: 0;
-      font-size: 0.83rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
+      /* ── Process ── */
+      .process-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        position: relative;
+      }
+      .process-row::after {
+        content: "";
+        position: absolute;
+        top: 36px;
+        left: calc(12.5% + 18px);
+        right: calc(12.5% + 18px);
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-soft),
+          var(--accent-soft)
+        );
+        z-index: 0;
+      }
+      .process-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 12px;
+        position: relative;
+        z-index: 1;
+      }
+      .step-num {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 14px rgba(23, 65, 198, 0.25);
+      }
+      .process-step h3 {
+        margin: 0 0 6px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .process-step p {
+        margin: 0;
+        font-size: 0.83rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
 
-    /* ── CTA section ── */
-    .cta-section {
-      background: linear-gradient(135deg, #0b1528 0%, #172c60 55%, #0f766e 100%);
-      border-radius: var(--radius-lg);
-      padding: 60px 48px;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-    .cta-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.07) 0%, transparent 55%);
-      pointer-events: none;
-    }
-    .cta-section > * { position: relative; z-index: 1; }
-    .cta-section h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 800;
-    }
-    .cta-section p {
-      margin: 0 auto 32px;
-      max-width: 520px;
-      color: rgba(255,255,255,0.8);
-      font-size: 1.05rem;
-    }
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-    }
-    .cta-info {
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .cta-info-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-    }
-    .cta-info-item strong { color: #fff; }
+      /* ── CTA section ── */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          #0b1528 0%,
+          #172c60 55%,
+          #0f766e 100%
+        );
+        border-radius: var(--radius-lg);
+        padding: 60px 48px;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(255, 255, 255, 0.07) 0%,
+          transparent 55%
+        );
+        pointer-events: none;
+      }
+      .cta-section > * {
+        position: relative;
+        z-index: 1;
+      }
+      .cta-section h2 {
+        margin: 0 0 12px;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+      }
+      .cta-section p {
+        margin: 0 auto 32px;
+        max-width: 520px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.05rem;
+      }
+      .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+      }
+      .cta-info {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .cta-info-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .cta-info-item strong {
+        color: #fff;
+      }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 28px 24px;
-      font-size: 0.85rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 20px;
-    }
+      /* ── Footer ── */
+      footer {
+        text-align: center;
+        padding: 28px 24px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        margin-top: 20px;
+      }
 
-    /* ── Section spacing ── */
-    section { margin-bottom: 72px; }
+      /* ── Section spacing ── */
+      section {
+        margin-bottom: 72px;
+      }
 
-    p { margin: 0 0 14px; }
-    /* 僅套用於內文條列，避免影響 nav 等自訂清單 */
-    .page ul { margin: 0; padding-left: 1.3rem; }
-    .page li + li { margin-top: 8px; }
+      p {
+        margin: 0 0 14px;
+      }
+      /* 僅套用於內文條列，避免影響 nav 等自訂清單 */
+      .page ul {
+        margin: 0;
+        padding-left: 1.3rem;
+      }
+      .page li + li {
+        margin-top: 8px;
+      }
 
-    /* ── Responsive ── */
-    @media (max-width: 960px) {
-      .hero { padding: 48px 36px 44px; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-stats { grid-template-columns: repeat(4, auto); grid-template-rows: auto; }
-      .about-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .highlights-grid { grid-template-columns: 1fr 1fr; }
-    }
-    /* ── Mobile hamburger (CSS-only) ── */
-    .nav-toggle { display: none; }
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      border-radius: 8px;
-      padding: 4px 5px;
-      background: none;
-      border: none;
-    }
-    .nav-hamburger span {
-      display: block;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-    .nav-toggle:checked ~ .nav-links-mobile { display: flex; }
-    nav:has(#nav-toggle:checked) .nav-links-mobile { display: flex; }
-    nav:has(#nav-toggle:checked) .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    nav:has(#nav-toggle:checked) .nav-hamburger span:nth-child(2) { opacity: 0; }
-    nav:has(#nav-toggle:checked) .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav-toggle:checked + label span:nth-child(2) { opacity: 0; }
-    .nav-toggle:checked + label span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav-links-mobile {
-      display: none;
-      flex-direction: column;
-      background: rgba(255,255,255,0.97);
-      border-top: 1px solid var(--border);
-      padding: 8px 0 12px;
-    }
-    .nav-links-mobile a {
-      display: block;
-      padding: 10px 24px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    .nav-links-mobile a:hover { color: var(--primary); }
+      /* ── Responsive ── */
+      @media (max-width: 960px) {
+        .hero {
+          padding: 48px 36px 44px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          grid-template-columns: repeat(4, auto);
+          grid-template-rows: auto;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .highlights-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      /* ── Mobile hamburger (CSS-only) ── */
+      .nav-toggle {
+        display: none;
+      }
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 4px 5px;
+        background: none;
+        border: none;
+      }
+      .nav-hamburger span {
+        display: block;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+      }
+      .nav-toggle:checked ~ .nav-links-mobile {
+        display: flex;
+      }
+      nav:has(#nav-toggle:checked) .nav-links-mobile {
+        display: flex;
+      }
+      nav:has(#nav-toggle:checked) .nav-hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      nav:has(#nav-toggle:checked) .nav-hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+      nav:has(#nav-toggle:checked) .nav-hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .nav-toggle:checked + label span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle:checked + label span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .nav-links-mobile {
+        display: none;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.97);
+        border-top: 1px solid var(--border);
+        padding: 8px 0 12px;
+      }
+      .nav-links-mobile a {
+        display: block;
+        padding: 10px 24px;
+        text-decoration: none;
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .nav-links-mobile a:hover {
+        color: var(--primary);
+      }
 
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      nav { position: sticky; top: 0; }
-      .hero { padding: 36px 24px; margin-top: 24px; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .hero-badges { gap: 6px; }
-      .badge { font-size: 0.78rem; padding: 5px 10px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .highlights-grid { grid-template-columns: 1fr; }
-      .process-row { grid-template-columns: 1fr 1fr; gap: 24px; }
-      .process-row::after { display: none; }
-      .cta-section { padding: 40px 24px; }
-      .page { padding: 0 16px 60px; }
-      .card { padding: 22px 18px; }
-    }
-  </style>
-</head>
-<body>
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+        nav {
+          position: sticky;
+          top: 0;
+        }
+        .hero {
+          padding: 36px 24px;
+          margin-top: 24px;
+        }
+        .hero-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-badges {
+          gap: 6px;
+        }
+        .badge {
+          font-size: 0.78rem;
+          padding: 5px 10px;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .highlights-grid {
+          grid-template-columns: 1fr;
+        }
+        .process-row {
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+        }
+        .process-row::after {
+          display: none;
+        }
+        .cta-section {
+          padding: 40px 24px;
+        }
+        .page {
+          padding: 0 16px 60px;
+        }
+        .card {
+          padding: 22px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Navigation ── -->
+    <nav>
+      <input
+        type="checkbox"
+        id="nav-toggle"
+        class="nav-toggle"
+        aria-hidden="true" />
+      <div class="nav-inner">
+        <div class="nav-brand">游至皓 Yu Chih Hao</div>
+        <ul class="nav-links">
+          <li><a href="#about">關於我</a></li>
+          <li><a href="#services">服務項目</a></li>
+          <li><a href="#tech">技術棧</a></li>
+          <li><a href="#highlights">專案亮點</a></li>
+          <li><a href="#contact">洽詢合作</a></li>
+        </ul>
+        <label for="nav-toggle" class="nav-hamburger" aria-label="開啟選單">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+      <div class="nav-links-mobile">
+        <a href="#about">關於我</a>
+        <a href="#services">服務項目</a>
+        <a href="#tech">技術棧</a>
+        <a href="#highlights">專案亮點</a>
+        <a href="#contact">洽詢合作</a>
+      </div>
+    </nav>
 
-  <!-- ── Navigation ── -->
-  <nav>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
-    <div class="nav-inner">
-      <div class="nav-brand">游至皓 Yu Crane</div>
-      <ul class="nav-links">
-        <li><a href="#about">關於我</a></li>
-        <li><a href="#services">服務項目</a></li>
-        <li><a href="#tech">技術棧</a></li>
-        <li><a href="#highlights">專案亮點</a></li>
-        <li><a href="#contact">洽詢合作</a></li>
-      </ul>
-      <label for="nav-toggle" class="nav-hamburger" aria-label="開啟選單">
-        <span></span><span></span><span></span>
-      </label>
+    <div class="page">
+      <!-- ── Hero ── -->
+      <section class="hero" id="home">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-eyebrow">
+              Senior Full-Stack Engineer &amp; Consultant
+            </div>
+            <h1>讓每個系統<br /><em>穩定、安全、準時上線</em></h1>
+            <p class="tagline">
+              20 年學術機構資訊系統開發經驗，ISO 27001 主導稽核員， Gemini /
+              Claude AI 協作開發，從設計到交付，全程專業護航。
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="mailto:930229@gmail.com"
+                >📧 Email 洽詢</a
+              >
+              <a
+                class="btn btn-outline"
+                href="https://line.me/ti/p/~crane.yu"
+                target="_blank"
+                rel="noopener"
+                >💬 LINE 聯繫</a
+              >
+            </div>
+            <div class="hero-badges">
+              <span class="badge">🤖 AI 賦能開發</span>
+              <span class="badge">🔐 ISO 27001 認證</span>
+              <span class="badge">⚡ 全端整合</span>
+              <span class="badge">🏛️ 學術機構深耕</span>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="num"
+                >20<span style="font-size: 1.2rem">+</span></span
+              >
+              <span class="label">年開發經驗</span>
+            </div>
+            <div class="stat-card">
+              <span class="num">AI</span>
+              <span class="label">協作開發</span>
+            </div>
+            <div class="stat-card">
+              <span class="num">ISO</span>
+              <span class="label">27001 稽核員</span>
+            </div>
+            <div class="stat-card">
+              <span class="num">全端</span>
+              <span class="label">系統整合</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── About ── -->
+      <section id="about">
+        <div class="section-header">
+          <div class="section-eyebrow">About Me</div>
+          <h2>個人價值主張</h2>
+          <div class="divider"></div>
+          <p>兼顧技術深度、資安合規與交付效率的資深全端工程師</p>
+        </div>
+        <div class="about-grid">
+          <div class="card" style="margin-bottom: 0">
+            <p class="about-lead">
+              我是一位擁有
+              <strong>20 年學術機構資訊系統開發經驗</strong
+              >的資深全端工程師，專注於複雜業務邏輯整合、舊系統現代化重構，以及兼顧效率與安全的系統設計。
+            </p>
+            <p class="about-lead">
+              為提供接案客戶最高效的服務，我已將
+              <strong>Gemini 與 Claude</strong>
+              深度融入日常開發與架構設計流程，大幅加速交付週期並確保程式碼品質。同時，我持有
+              <strong>ISO 27001 主導稽核員</strong
+              >資格，能在開發初期即建立嚴格的資安防護網。
+            </p>
+            <p class="about-lead" style="margin-bottom: 0">
+              無論是企業內部系統建置、外部平台串接或外包專案開發，我皆能提供穩定、精準、準時交付的專業技術支援。
+            </p>
+          </div>
+          <div class="value-props">
+            <div class="vp">
+              <div class="vp-icon">🎯</div>
+              <div class="vp-body">
+                <strong>精準估時・高效交付</strong>
+                <span>20 年實戰經驗 + AI 輔助開發，透明進度、如期上線</span>
+              </div>
+            </div>
+            <div class="vp">
+              <div class="vp-icon">🔐</div>
+              <div class="vp-body">
+                <strong>資安合規・從源頭防護</strong>
+                <span>ISO 27001 稽核員資格，系統設計初期即納入安全需求</span>
+              </div>
+            </div>
+            <div class="vp">
+              <div class="vp-icon">🤖</div>
+              <div class="vp-body">
+                <strong>AI 賦能・提升開發品質</strong>
+                <span>Gemini / Claude 協作架構規畫、程式碼輔助與效能重構</span>
+              </div>
+            </div>
+            <div class="vp">
+              <div class="vp-icon">💬</div>
+              <div class="vp-body">
+                <strong>流暢溝通・長期維運後盾</strong>
+                <span>熟悉接案節奏，彈性配合時程，提供持續可靠的技術支撐</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Services ── -->
+      <section id="services">
+        <div class="section-header">
+          <div class="section-eyebrow">Services</div>
+          <h2>核心服務項目</h2>
+          <div class="divider"></div>
+          <p>從需求分析到系統上線，提供端到端的全端工程支援</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <span class="service-icon">🏗️</span>
+            <h3>企業內部系統建置</h3>
+            <p>
+              從資料庫設計、後端邏輯到前端整合，具備獨立完成全端作戰的能力，涵蓋行政、學術、財務等多元業務場景。
+            </p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">🔄</span>
+            <h3>舊系統現代化重構</h3>
+            <p>
+              將傳統 WebForm / ASP 系統全面升級重構為 Angular + Web API
+              現代化架構，提升維護性、擴充性與使用者體驗。
+            </p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">🔗</span>
+            <h3>跨系統整合與 API 串接</h3>
+            <p>
+              具備第三方 API 串接、Taiwan Pay
+              金流整合、虛擬帳號查驗與校務流程整合的豐富實戰經驗。
+            </p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">🛡️</span>
+            <h3>資安合規導向開發</h3>
+            <p>
+              以 ISO 27001 視角進行系統設計，整合 Token 驗證、FIDO2
+              身分認證，從源頭降低稽核風險。
+            </p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">🤖</span>
+            <h3>AI 輔助架構規畫</h3>
+            <p>
+              運用 Gemini / Claude
+              進行需求拆解、架構設計與程式碼輔助生成，大幅縮短開發週期並確保品質。
+            </p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">⚙️</span>
+            <h3>自動化流程與系統維運</h3>
+            <p>
+              主導帳號申請自動化、排程備份、報表系統、門禁控制整合，以及 VMware
+              虛擬化環境的日常維運。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Tech Stack ── -->
+      <section id="tech">
+        <div class="section-header">
+          <div class="section-eyebrow">Tech Stack</div>
+          <h2>技術棧 &amp; 關鍵字</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="tech-section">
+          <div class="tech-group">
+            <div class="tech-group-label">前端</div>
+            <div class="tags">
+              <span class="tag tag-blue">Angular</span>
+              <span class="tag tag-blue">Angular 21</span>
+              <span class="tag tag-blue">AG Grid</span>
+              <span class="tag tag-blue">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-group-label">後端 &amp; API</div>
+            <div class="tags">
+              <span class="tag tag-blue">.NET Core</span>
+              <span class="tag tag-blue">C#</span>
+              <span class="tag tag-blue">Web API</span>
+              <span class="tag tag-blue">EF Core</span>
+              <span class="tag tag-blue">PHP</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-group-label">資料庫 &amp; 基礎建設</div>
+            <div class="tags">
+              <span class="tag tag-teal">SQL Server</span>
+              <span class="tag tag-teal">MySQL</span>
+              <span class="tag tag-teal">Git</span>
+              <span class="tag tag-teal">VMware</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-group-label">資安 &amp; 認證</div>
+            <div class="tags">
+              <span class="tag tag-gold">ISO 27001</span>
+              <span class="tag tag-gold">FIDO2</span>
+              <span class="tag tag-gold">Taiwan Pay</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-group-label">AI 協作</div>
+            <div class="tags">
+              <span class="tag tag-gold">Gemini</span>
+              <span class="tag tag-gold">Claude</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Highlights ── -->
+      <section id="highlights">
+        <div class="section-header">
+          <div class="section-eyebrow">Expertise</div>
+          <h2>專案能力亮點</h2>
+          <div class="divider"></div>
+          <p>深耕學術與行政機構多年，理解各處室的真實運作痛點</p>
+        </div>
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <span class="h-icon">🔄</span>
+            <h3>舊系統現代化重構</h3>
+            <p>
+              將傳統 WebForm 系統重構為 Angular + Web API
+              架構，提升維護性、擴充性與使用體驗。
+            </p>
+          </div>
+          <div class="highlight-card">
+            <span class="h-icon">💳</span>
+            <h3>跨系統整合與金流串接</h3>
+            <p>
+              Taiwan
+              Pay、虛擬帳號查驗與校務流程整合，確保交易資料即時性與高安全性。
+            </p>
+          </div>
+          <div class="highlight-card">
+            <span class="h-icon">🛡️</span>
+            <h3>資安與稽核導向設計</h3>
+            <p>
+              從系統設計初期納入 ISO 27001
+              與身分驗證需求，降低後續稽核與漏洞修補成本。
+            </p>
+          </div>
+          <div class="highlight-card">
+            <span class="h-icon">📋</span>
+            <h3>校務流程自動化</h3>
+            <p>
+              主導校務資訊入網、帳號申請自動化、客製化報表系統、排課系統與門禁控制整合。
+            </p>
+          </div>
+          <div class="highlight-card">
+            <span class="h-icon">🤖</span>
+            <h3>AI 協作開發流程</h3>
+            <p>
+              運用 Gemini 與 Claude
+              進行架構規畫、程式碼輔助生成與效能重構，大幅提升交付效率。
+            </p>
+          </div>
+          <div class="highlight-card">
+            <span class="h-icon">🗄️</span>
+            <h3>資料庫設計與維運</h3>
+            <p>
+              精通 SQL Server / MySQL
+              正規化設計、效能調校、自動化備份排程與異地備援（DR）。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Process ── -->
+      <section id="process">
+        <div class="section-header">
+          <div class="section-eyebrow">Workflow</div>
+          <h2>合作流程</h2>
+          <div class="divider"></div>
+          <p>清晰透明的合作節奏，從需求到交付全程可追蹤</p>
+        </div>
+        <div class="card" style="padding: 44px 40px">
+          <div class="process-row">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <h3>需求訪談</h3>
+              <p>深入了解業務痛點、系統現況與目標，釐清範圍與優先順序</p>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <h3>架構規畫</h3>
+              <p>提出技術方案、資料庫設計草圖與 API 規格，確認可行性與成本</p>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <h3>開發交付</h3>
+              <p>AI 輔助開發加速迭代，階段性交付可測試版本，透明回報進度</p>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <h3>上線維運</h3>
+              <p>協助部署、資安稽核配合、教育訓練，並提供長期維運支援</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CTA ── -->
+      <section id="contact">
+        <div class="cta-section">
+          <h2>準備好開始合作了嗎？</h2>
+          <p>
+            無論是新系統建置、舊系統重構、API 串接或資安合規需求，
+            歡迎直接聯繫，我會在 24 小時內回覆。
+          </p>
+          <div class="cta-buttons">
+            <a class="btn btn-primary" href="mailto:930229@gmail.com"
+              >📧 發送 Email</a
+            >
+            <a
+              class="btn btn-outline"
+              href="https://line.me/ti/p/~crane.yu"
+              target="_blank"
+              rel="noopener"
+              >💬 LINE 洽詢</a
+            >
+          </div>
+          <div class="cta-info">
+            <div class="cta-info-item">
+              📧 <strong>930229@gmail.com</strong>
+            </div>
+            <div class="cta-info-item">💬 LINE：<strong>crane.yu</strong></div>
+            <div class="cta-info-item">🕐 通常 24 小時內回覆</div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="nav-links-mobile">
-      <a href="#about">關於我</a>
-      <a href="#services">服務項目</a>
-      <a href="#tech">技術棧</a>
-      <a href="#highlights">專案亮點</a>
-      <a href="#contact">洽詢合作</a>
-    </div>
-  </nav>
+    <!-- /page -->
 
-  <div class="page">
-
-    <!-- ── Hero ── -->
-    <section class="hero" id="home">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-eyebrow">Senior Full-Stack Engineer &amp; Consultant</div>
-          <h1>讓每個系統<br><em>穩定、安全、準時上線</em></h1>
-          <p class="tagline">
-            20 年學術機構資訊系統開發經驗，ISO 27001 主導稽核員，
-            Gemini / Claude AI 協作開發，從設計到交付，全程專業護航。
-          </p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="mailto:930229@gmail.com">📧 Email 洽詢</a>
-            <a class="btn btn-outline" href="https://line.me/ti/p/~crane.yu" target="_blank" rel="noopener">💬 LINE 聯繫</a>
-          </div>
-          <div class="hero-badges">
-            <span class="badge">🤖 AI 賦能開發</span>
-            <span class="badge">🔐 ISO 27001 認證</span>
-            <span class="badge">⚡ 全端整合</span>
-            <span class="badge">🏛️ 學術機構深耕</span>
-          </div>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-card">
-            <span class="num">20<span style="font-size:1.2rem">+</span></span>
-            <span class="label">年開發經驗</span>
-          </div>
-          <div class="stat-card">
-            <span class="num">AI</span>
-            <span class="label">協作開發</span>
-          </div>
-          <div class="stat-card">
-            <span class="num">ISO</span>
-            <span class="label">27001 稽核員</span>
-          </div>
-          <div class="stat-card">
-            <span class="num">全端</span>
-            <span class="label">系統整合</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── About ── -->
-    <section id="about">
-      <div class="section-header">
-        <div class="section-eyebrow">About Me</div>
-        <h2>個人價值主張</h2>
-        <div class="divider"></div>
-        <p>兼顧技術深度、資安合規與交付效率的資深全端工程師</p>
-      </div>
-      <div class="about-grid">
-        <div class="card" style="margin-bottom:0">
-          <p class="about-lead">
-            我是一位擁有 <strong>20 年學術機構資訊系統開發經驗</strong>的資深全端工程師，專注於複雜業務邏輯整合、舊系統現代化重構，以及兼顧效率與安全的系統設計。
-          </p>
-          <p class="about-lead">
-            為提供接案客戶最高效的服務，我已將 <strong>Gemini 與 Claude</strong> 深度融入日常開發與架構設計流程，大幅加速交付週期並確保程式碼品質。同時，我持有 <strong>ISO 27001 主導稽核員</strong>資格，能在開發初期即建立嚴格的資安防護網。
-          </p>
-          <p class="about-lead" style="margin-bottom:0">
-            無論是企業內部系統建置、外部平台串接或外包專案開發，我皆能提供穩定、精準、準時交付的專業技術支援。
-          </p>
-        </div>
-        <div class="value-props">
-          <div class="vp">
-            <div class="vp-icon">🎯</div>
-            <div class="vp-body">
-              <strong>精準估時・高效交付</strong>
-              <span>20 年實戰經驗 + AI 輔助開發，透明進度、如期上線</span>
-            </div>
-          </div>
-          <div class="vp">
-            <div class="vp-icon">🔐</div>
-            <div class="vp-body">
-              <strong>資安合規・從源頭防護</strong>
-              <span>ISO 27001 稽核員資格，系統設計初期即納入安全需求</span>
-            </div>
-          </div>
-          <div class="vp">
-            <div class="vp-icon">🤖</div>
-            <div class="vp-body">
-              <strong>AI 賦能・提升開發品質</strong>
-              <span>Gemini / Claude 協作架構規畫、程式碼輔助與效能重構</span>
-            </div>
-          </div>
-          <div class="vp">
-            <div class="vp-icon">💬</div>
-            <div class="vp-body">
-              <strong>流暢溝通・長期維運後盾</strong>
-              <span>熟悉接案節奏，彈性配合時程，提供持續可靠的技術支撐</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Services ── -->
-    <section id="services">
-      <div class="section-header">
-        <div class="section-eyebrow">Services</div>
-        <h2>核心服務項目</h2>
-        <div class="divider"></div>
-        <p>從需求分析到系統上線，提供端到端的全端工程支援</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="service-icon">🏗️</span>
-          <h3>企業內部系統建置</h3>
-          <p>從資料庫設計、後端邏輯到前端整合，具備獨立完成全端作戰的能力，涵蓋行政、學術、財務等多元業務場景。</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🔄</span>
-          <h3>舊系統現代化重構</h3>
-          <p>將傳統 WebForm / ASP 系統全面升級重構為 Angular + Web API 現代化架構，提升維護性、擴充性與使用者體驗。</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🔗</span>
-          <h3>跨系統整合與 API 串接</h3>
-          <p>具備第三方 API 串接、Taiwan Pay 金流整合、虛擬帳號查驗與校務流程整合的豐富實戰經驗。</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🛡️</span>
-          <h3>資安合規導向開發</h3>
-          <p>以 ISO 27001 視角進行系統設計，整合 Token 驗證、FIDO2 身分認證，從源頭降低稽核風險。</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🤖</span>
-          <h3>AI 輔助架構規畫</h3>
-          <p>運用 Gemini / Claude 進行需求拆解、架構設計與程式碼輔助生成，大幅縮短開發週期並確保品質。</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">⚙️</span>
-          <h3>自動化流程與系統維運</h3>
-          <p>主導帳號申請自動化、排程備份、報表系統、門禁控制整合，以及 VMware 虛擬化環境的日常維運。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Tech Stack ── -->
-    <section id="tech">
-      <div class="section-header">
-        <div class="section-eyebrow">Tech Stack</div>
-        <h2>技術棧 &amp; 關鍵字</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="tech-section">
-        <div class="tech-group">
-          <div class="tech-group-label">前端</div>
-          <div class="tags">
-            <span class="tag tag-blue">Angular</span>
-            <span class="tag tag-blue">Angular 21</span>
-            <span class="tag tag-blue">AG Grid</span>
-            <span class="tag tag-blue">Tailwind CSS</span>
-          </div>
-        </div>
-        <div class="tech-group">
-          <div class="tech-group-label">後端 &amp; API</div>
-          <div class="tags">
-            <span class="tag tag-blue">.NET Core</span>
-            <span class="tag tag-blue">C#</span>
-            <span class="tag tag-blue">Web API</span>
-            <span class="tag tag-blue">EF Core</span>
-            <span class="tag tag-blue">PHP</span>
-          </div>
-        </div>
-        <div class="tech-group">
-          <div class="tech-group-label">資料庫 &amp; 基礎建設</div>
-          <div class="tags">
-            <span class="tag tag-teal">SQL Server</span>
-            <span class="tag tag-teal">MySQL</span>
-            <span class="tag tag-teal">Git</span>
-            <span class="tag tag-teal">VMware</span>
-          </div>
-        </div>
-        <div class="tech-group">
-          <div class="tech-group-label">資安 &amp; 認證</div>
-          <div class="tags">
-            <span class="tag tag-gold">ISO 27001</span>
-            <span class="tag tag-gold">FIDO2</span>
-            <span class="tag tag-gold">Taiwan Pay</span>
-          </div>
-        </div>
-        <div class="tech-group">
-          <div class="tech-group-label">AI 協作</div>
-          <div class="tags">
-            <span class="tag tag-gold">Gemini</span>
-            <span class="tag tag-gold">Claude</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Highlights ── -->
-    <section id="highlights">
-      <div class="section-header">
-        <div class="section-eyebrow">Expertise</div>
-        <h2>專案能力亮點</h2>
-        <div class="divider"></div>
-        <p>深耕學術與行政機構多年，理解各處室的真實運作痛點</p>
-      </div>
-      <div class="highlights-grid">
-        <div class="highlight-card">
-          <span class="h-icon">🔄</span>
-          <h3>舊系統現代化重構</h3>
-          <p>將傳統 WebForm 系統重構為 Angular + Web API 架構，提升維護性、擴充性與使用體驗。</p>
-        </div>
-        <div class="highlight-card">
-          <span class="h-icon">💳</span>
-          <h3>跨系統整合與金流串接</h3>
-          <p>Taiwan Pay、虛擬帳號查驗與校務流程整合，確保交易資料即時性與高安全性。</p>
-        </div>
-        <div class="highlight-card">
-          <span class="h-icon">🛡️</span>
-          <h3>資安與稽核導向設計</h3>
-          <p>從系統設計初期納入 ISO 27001 與身分驗證需求，降低後續稽核與漏洞修補成本。</p>
-        </div>
-        <div class="highlight-card">
-          <span class="h-icon">📋</span>
-          <h3>校務流程自動化</h3>
-          <p>主導校務資訊入網、帳號申請自動化、客製化報表系統、排課系統與門禁控制整合。</p>
-        </div>
-        <div class="highlight-card">
-          <span class="h-icon">🤖</span>
-          <h3>AI 協作開發流程</h3>
-          <p>運用 Gemini 與 Claude 進行架構規畫、程式碼輔助生成與效能重構，大幅提升交付效率。</p>
-        </div>
-        <div class="highlight-card">
-          <span class="h-icon">🗄️</span>
-          <h3>資料庫設計與維運</h3>
-          <p>精通 SQL Server / MySQL 正規化設計、效能調校、自動化備份排程與異地備援（DR）。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Process ── -->
-    <section id="process">
-      <div class="section-header">
-        <div class="section-eyebrow">Workflow</div>
-        <h2>合作流程</h2>
-        <div class="divider"></div>
-        <p>清晰透明的合作節奏，從需求到交付全程可追蹤</p>
-      </div>
-      <div class="card" style="padding: 44px 40px">
-        <div class="process-row">
-          <div class="process-step">
-            <div class="step-num">1</div>
-            <h3>需求訪談</h3>
-            <p>深入了解業務痛點、系統現況與目標，釐清範圍與優先順序</p>
-          </div>
-          <div class="process-step">
-            <div class="step-num">2</div>
-            <h3>架構規畫</h3>
-            <p>提出技術方案、資料庫設計草圖與 API 規格，確認可行性與成本</p>
-          </div>
-          <div class="process-step">
-            <div class="step-num">3</div>
-            <h3>開發交付</h3>
-            <p>AI 輔助開發加速迭代，階段性交付可測試版本，透明回報進度</p>
-          </div>
-          <div class="process-step">
-            <div class="step-num">4</div>
-            <h3>上線維運</h3>
-            <p>協助部署、資安稽核配合、教育訓練，並提供長期維運支援</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── CTA ── -->
-    <section id="contact">
-      <div class="cta-section">
-        <h2>準備好開始合作了嗎？</h2>
-        <p>
-          無論是新系統建置、舊系統重構、API 串接或資安合規需求，
-          歡迎直接聯繫，我會在 24 小時內回覆。
-        </p>
-        <div class="cta-buttons">
-          <a class="btn btn-primary" href="mailto:930229@gmail.com">📧 發送 Email</a>
-          <a class="btn btn-outline" href="https://line.me/ti/p/~crane.yu" target="_blank" rel="noopener">💬 LINE 洽詢</a>
-        </div>
-        <div class="cta-info">
-          <div class="cta-info-item">📧 <strong>930229@gmail.com</strong></div>
-          <div class="cta-info-item">💬 LINE：<strong>crane.yu</strong></div>
-          <div class="cta-info-item">🕐 通常 24 小時內回覆</div>
-        </div>
-      </div>
-    </section>
-
-  </div><!-- /page -->
-
-  <footer>
-    <p>© 2025 游至皓 Yu Crane · 資深全端工程師 · All rights reserved.</p>
-  </footer>
-
-</body>
+    <footer>
+      <p>© 2025 游至皓 Yu Crane · 資深全端工程師 · All rights reserved.</p>
+    </footer>
+  </body>
 </html>
