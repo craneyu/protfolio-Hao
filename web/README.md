@@ -1,7 +1,7 @@
 # 個人作品集 — Angular 22 + Tailwind CSS 4
 
-由根目錄的單檔靜態頁 `index.html` 重構而成。版面、間距與斷點行為以原始頁為基準，
-已用無頭瀏覽器逐區塊比對驗證（見下方「與原始頁的差異」）。
+由原本根目錄的單檔靜態頁 `index.html` 重構而成（該檔已於 Angular 版接手站台根目錄後刪除）。
+版面、間距與斷點行為以原始頁為基準，已用無頭瀏覽器逐區塊比對驗證（見下方「與原始頁的差異」）。
 
 ## 開發
 
@@ -10,6 +10,26 @@ npm start          # 開發伺服器 http://localhost:4200
 npm run build      # 產出到 dist/web/browser
 npx prettier --write "src/**/*.{ts,html,css}"
 ```
+
+## 部署與預先渲染
+
+`angular.json` 的 `outputMode: "static"` 會在建置階段就把路由渲染成完整 HTML
+（`@angular/ssr` 提供，但不需要 Node 伺服器），因此：
+
+- 產出的 `index.html` 內含實際內容，**關閉 JavaScript 也看得到**
+- 純靜態檔案即可部署，適用 GitHub Pages
+- `provideClientHydration()` 讓瀏覽器端接管既有 DOM 而非重畫
+
+`.github/workflows/deploy-pages.yml` 會在 push 到 `main` 時自動建置並發佈：
+
+| 網址 | 內容 |
+|---|---|
+| `/` | 此 Angular 專案 |
+| `/Taichung2D1N.html` | 既有靜態旅遊頁，原樣保留 |
+| `/app/` | 轉址到 `/`（此路徑短暫使用過，留著避免死連結） |
+
+workflow 中有一道檢查：若首頁 HTML 不含預期文字，代表預先渲染失效，建置會直接失敗，
+避免靜默部署出空殼頁面。
 
 ## 結構
 
