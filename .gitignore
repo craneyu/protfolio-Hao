@@ -1,0 +1,9 @@
+# Angular CLI 建置快取（跑 ng build / ng serve 時產生）
+.angular/
+
+# 相依套件與建置產物
+node_modules/
+dist/
+
+# macOS
+.DS_Store
