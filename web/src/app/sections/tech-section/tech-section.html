@@ -1,10 +1,17 @@
 <section id="tech" class="mb-18">
   <app-section-heading [intro]="intro" />
 
-  <div class="rounded-card border border-line bg-surface p-9 shadow-card">
+  <!-- 版面：分類標題置左固定寬、標籤填滿右側。
+       原本標題在上、標籤在下，每列只用掉約三成寬度，右側大片留白且卡片過高。
+       分隔線用 border-t + first:border-t-0，不用 divide-y —— 後者在這裡沒生效。 -->
+  <div class="rounded-card border border-line bg-surface px-5 py-5 shadow-card sm:px-8 sm:py-6">
     @for (group of groups; track group.label) {
-      <div class="mb-6 last:mb-0">
-        <div class="mb-2.5 text-[0.8rem] font-bold tracking-[0.1em] text-muted uppercase">
+      <div
+        class="flex flex-col gap-2 border-t border-line py-4 first:border-t-0 first:pt-0 last:pb-0 md:flex-row md:items-start md:gap-6"
+      >
+        <div
+          class="shrink-0 text-[0.8rem] font-bold tracking-[0.1em] text-muted uppercase md:w-36 md:pt-3"
+        >
           {{ group.label }}
         </div>
         <div class="flex flex-wrap gap-2">
