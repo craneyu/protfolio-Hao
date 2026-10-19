@@ -48,6 +48,7 @@ src/
         ├── services-section/
         ├── tech-section/
         ├── highlights-section/
+        ├── projects-section/
         ├── process-section/
         ├── contact-section/
         └── site-footer/
